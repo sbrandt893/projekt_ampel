@@ -15,9 +15,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
       builder: (context, watch, child) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('Settings'),
+            title: const Text('Settings'),
           ),
-          body: Center(
+          body: const Center(
             child: Text(
               'Settings',
             ),
