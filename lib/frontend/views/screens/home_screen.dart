@@ -21,7 +21,7 @@ class HomeScreen extends ConsumerWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(height: 50),
+                  const SizedBox(height: 50),
                   Expanded(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -31,7 +31,7 @@ class HomeScreen extends ConsumerWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 220),
+                  const SizedBox(height: 220),
                   Expanded(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -41,7 +41,7 @@ class HomeScreen extends ConsumerWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 50),
+                  const SizedBox(height: 50),
                 ],
               ),
             ],
