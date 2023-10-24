@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:projekt_ampel/backend/models/ampel.dart';
 import 'package:projekt_ampel/logic/provider/ampel_state.dart.dart';
 
 class AmpelWidget extends StatelessWidget {
   // Parameter allgemeiner AmpelStateProvider
-  final ChangeNotifierProvider<AmpelState> ampelStateProvider;
+  final StateNotifierProvider<AmpelState, Ampel> ampelStateProvider;
 
   const AmpelWidget({
     Key? key,
@@ -15,7 +16,7 @@ class AmpelWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, child) {
-        final ampel = ref.watch(ampelStateProvider).ampel;
+        final ampel = ref.watch(ampelStateProvider);
 
         return Flexible(
           child: FittedBox(
@@ -54,7 +55,9 @@ class AmpelWidget extends StatelessWidget {
                         width: 50,
                         child: ElevatedButton(
                           onPressed: () async {
-                            ampel.eingeschaltet ? ref.read(ampelStateProvider).ausschalten() : ref.read(ampelStateProvider).einschalten();
+                            ampel.eingeschaltet ? ref.read(ampelStateProvider.notifier).ausschalten() : ref.read(ampelStateProvider.notifier).einschalten();
+                            // ref.read(counterProvider.notifier).incrementCounter();
+                            // ref.read(ampelStateProvider.notifier).einschalten();
                           },
                           child: const Icon(
                             Icons.power_settings_new,
@@ -65,7 +68,7 @@ class AmpelWidget extends StatelessWidget {
                         width: 50,
                         child: ElevatedButton(
                           onPressed: () {
-                            ref.read(ampelStateProvider).schalten();
+                            ref.read(ampelStateProvider.notifier).schalten();
                           },
                           child: const Icon(Icons.skip_next),
                         ),

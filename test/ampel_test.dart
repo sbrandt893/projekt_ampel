@@ -34,6 +34,7 @@ void main() {
 
   test('Ampel schalten()', () {
     Ampel ampel = Ampel(
+      eingeschaltet: true,
       lampeRot: false,
       lampeGelb: false,
       lampeGruen: true,

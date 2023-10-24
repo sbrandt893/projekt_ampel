@@ -1,11 +1,13 @@
 import 'dart:developer';
 
+// Ampel-Model
 class Ampel {
   final bool _eingeschaltet;
   final bool _lampeRot;
   final bool _lampeGelb;
   final bool _lampeGruen;
 
+// Constructor with named parameters
   Ampel({
     bool eingeschaltet = false,
     required bool lampeRot,
@@ -21,6 +23,7 @@ class Ampel {
   bool get lampeGelb => _lampeGelb;
   bool get lampeGruen => _lampeGruen;
 
+// copyWith-Methode die eine neue Ampel mit den übergebenen Werten zurückgibt (immutable)
   Ampel copyWith({
     bool? eingeschaltet,
     bool? lampeRot,
@@ -76,8 +79,29 @@ class Ampel {
     );
   }
 
+// toString-Methode für die Ausgabe in der Konsole
   @override
   String toString() {
     return 'Ampel(eingeschaltet: $eingeschaltet, lampeRot: $lampeRot, lampeGelb: $lampeGelb, lampeGruen: $lampeGruen)';
+  }
+
+// toJson-Methode für die Serialisierung
+  Map<String, dynamic> toJson() {
+    return {
+      'eingeschaltet': eingeschaltet,
+      'lampeRot': lampeRot,
+      'lampeGelb': lampeGelb,
+      'lampeGruen': lampeGruen,
+    };
+  }
+
+// fromJson-Methode für die Deserialisierung
+  factory Ampel.fromJson(Map<String, dynamic> json) {
+    return Ampel(
+      eingeschaltet: json['eingeschaltet'],
+      lampeRot: json['lampeRot'],
+      lampeGelb: json['lampeGelb'],
+      lampeGruen: json['lampeGruen'],
+    );
   }
 }
