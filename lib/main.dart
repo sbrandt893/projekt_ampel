@@ -14,12 +14,34 @@ void main() {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget with WidgetsBindingObserver {
   final AppRouter appRouter;
   const MyApp({super.key, required this.appRouter});
 
   @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    switch (state) {
+      case AppLifecycleState.inactive:
+        print('AppLifecycleState: inactive');
+        break;
+      case AppLifecycleState.resumed:
+        print('AppLifecycleState: resumed');
+        break;
+      case AppLifecycleState.paused:
+        print('AppLifecycleState: paused');
+        break;
+      case AppLifecycleState.detached:
+        print('AppLifecycleState: detached');
+        break;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // Registrieren Sie den Event-Handler für das App-Lebenszyklus hier in der MyApp-Klasse.
+    WidgetsBinding.instance.addObserver(this);
+
     return MaterialApp(
       title: 'Ampel-Schaltung',
       theme: ThemeData(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:projekt_ampel/frontend/routes/app_router.dart';
 import 'package:projekt_ampel/frontend/views/widgets/ampel_widget.dart';
 import 'package:projekt_ampel/logic/provider/ampel_provider.dart';
 
@@ -11,6 +12,26 @@ class HomeScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ampel-Schaltung'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.save),
+            onPressed: () {
+              ref.read(appStateProvider.notifier).saveAppState();
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.restore),
+            onPressed: () {
+              ref.read(appStateProvider.notifier).loadAppState();
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              Navigator.pushNamed(context, Routes.settings.name);
+            },
+          ),
+        ],
       ),
       body: Center(
         child: AspectRatio(

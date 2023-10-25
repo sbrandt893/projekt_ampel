@@ -6,39 +6,40 @@ import 'dart:convert';
 
 class AmpelState extends StateNotifier<Ampel> {
   final String uniqueId; // Eindeutige Kennung für die Ampel
+  final Ampel ampel;
 
 // Konstruktor
-  AmpelState({required this.uniqueId})
+  AmpelState({required this.uniqueId, required this.ampel})
       : super(Ampel(
           lampeGruen: false,
           lampeGelb: false,
           lampeRot: false,
         )) {
-    loadAmpelState();
+    // loadAmpelState();
   }
 
 // Ampel einschalten
   void einschalten() {
     state = state.einschalten();
-    saveAmpelState();
+    // saveAmpelState();
   }
 
 // Ampel ausschalten
   void ausschalten() {
     state = state.ausschalten();
-    saveAmpelState();
+    // saveAmpelState();
   }
 
 // schaltet durch die verschiedenen Ampelphasen (rot, rot-gelb, grün, gelb)
   void schalten() {
     state = state.schalten();
-    saveAmpelState();
+    // saveAmpelState();
   }
 
 // setzt die Ampel auf die übergebenen Werte mit copyWith
   void setLampen({required bool lampeRot, required bool lampeGelb, required bool lampeGruen}) {
     state = state.setLampen(lampeRot: lampeRot, lampeGelb: lampeGelb, lampeGruen: lampeGruen);
-    saveAmpelState();
+    // saveAmpelState();
   }
 
 // toString-Methode für die Ausgabe in der Konsole
@@ -77,9 +78,15 @@ class AmpelState extends StateNotifier<Ampel> {
 
   // toJson-Methode für die Serialisierung
   Map<String, dynamic> toJson() {
+    print('AmpelState.toJson()');
     return {
       'uniqueId': uniqueId,
-      'ampel': state.toJson(),
+      'ampel': {
+        'eingeschaltet': state.eingeschaltet,
+        'lampeRot': state.lampeRot,
+        'lampeGelb': state.lampeGelb,
+        'lampeGruen': state.lampeGruen,
+      }
     };
   }
 
@@ -87,6 +94,7 @@ class AmpelState extends StateNotifier<Ampel> {
   factory AmpelState.fromJson(Map<String, dynamic> json) {
     return AmpelState(
       uniqueId: json['uniqueId'],
+      ampel: Ampel.fromJson(json['ampel']),
     );
   }
 }

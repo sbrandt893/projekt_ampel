@@ -97,6 +97,7 @@ class Ampel {
 
 // fromJson-Methode für die Deserialisierung
   factory Ampel.fromJson(Map<String, dynamic> json) {
+    print('Ampel.fromJson()' + json['eingeschaltet'].toString());
     return Ampel(
       eingeschaltet: json['eingeschaltet'],
       lampeRot: json['lampeRot'],

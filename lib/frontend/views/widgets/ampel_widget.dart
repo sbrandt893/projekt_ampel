@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projekt_ampel/backend/models/ampel.dart';
-import 'package:projekt_ampel/logic/provider/ampel_state.dart.dart';
+import 'package:projekt_ampel/logic/provider/ampel_state.dart';
 
 class AmpelWidget extends StatelessWidget {
   // Parameter allgemeiner AmpelStateProvider
