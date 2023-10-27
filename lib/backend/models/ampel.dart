@@ -8,8 +8,8 @@ class Ampel {
   final bool _lampeGruen;
 
 // Constructor with named parameters
-  Ampel({
-    bool eingeschaltet = false,
+  const Ampel({
+    required bool eingeschaltet,
     required bool lampeRot,
     required bool lampeGelb,
     required bool lampeGruen,
@@ -97,11 +97,12 @@ class Ampel {
 
 // fromJson-Methode für die Deserialisierung
   factory Ampel.fromJson(Map<String, dynamic> json) {
-    return Ampel(
+    final ampel = Ampel(
       eingeschaltet: json['eingeschaltet'],
       lampeRot: json['lampeRot'],
       lampeGelb: json['lampeGelb'],
       lampeGruen: json['lampeGruen'],
     );
+    return ampel;
   }
 }

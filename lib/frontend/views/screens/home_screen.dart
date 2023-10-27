@@ -11,6 +11,16 @@ class HomeScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ampel-Schaltung'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.save),
+            onPressed: () => ref.read(appStateManagerProvider.notifier).saveAppState(),
+          ),
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: () => ref.read(appStateManagerProvider.notifier).loadAppState(),
+          ),
+        ],
       ),
       body: Center(
         child: AspectRatio(

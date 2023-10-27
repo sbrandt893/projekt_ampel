@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projekt_ampel/frontend/routes/app_router.dart';
+import 'package:projekt_ampel/logic/provider/ampel_provider.dart';
+
+WidgetRef? globalRef;
 
 void main() {
   runApp(
@@ -14,12 +17,15 @@ void main() {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   final AppRouter appRouter;
   const MyApp({super.key, required this.appRouter});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    globalRef = ref;
+    globalRef?.read(appStateManagerProvider.notifier).loadAppState();
+
     return MaterialApp(
       title: 'Ampel-Schaltung',
       theme: ThemeData(

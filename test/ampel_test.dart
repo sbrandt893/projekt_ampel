@@ -3,19 +3,22 @@ import 'package:projekt_ampel/backend/models/ampel.dart';
 
 void main() {
   test('Instanzierung der Klasse Ampel', () {
-    Ampel ampel = Ampel(
+    Ampel ampel = const Ampel(
+      eingeschaltet: false,
       lampeRot: false,
       lampeGelb: false,
       lampeGruen: false,
     );
 
+    expect(ampel.eingeschaltet, false);
     expect(ampel.lampeRot, false);
     expect(ampel.lampeGelb, false);
     expect(ampel.lampeGruen, false);
   });
 
   test('Ampel setLampen()', () {
-    Ampel ampel = Ampel(
+    Ampel ampel = const Ampel(
+      eingeschaltet: false,
       lampeRot: false,
       lampeGelb: false,
       lampeGruen: false,
@@ -33,7 +36,7 @@ void main() {
   });
 
   test('Ampel schalten()', () {
-    Ampel ampel = Ampel(
+    Ampel ampel = const Ampel(
       eingeschaltet: true,
       lampeRot: false,
       lampeGelb: false,
@@ -47,20 +50,23 @@ void main() {
   });
 
   test('Ampel copyWith()', () {
-    Ampel ampel = Ampel(
+    Ampel ampel = const Ampel(
+      eingeschaltet: false,
       lampeRot: false,
       lampeGelb: false,
       lampeGruen: false,
     );
 
     ampel = ampel.copyWith(
-      lampeRot: true,
+      eingeschaltet: true,
+      lampeRot: false,
       lampeGelb: false,
-      lampeGruen: false,
+      lampeGruen: true,
     );
 
-    expect(ampel.lampeRot, true);
+    expect(ampel.eingeschaltet, true);
+    expect(ampel.lampeRot, false);
     expect(ampel.lampeGelb, false);
-    expect(ampel.lampeGruen, false);
+    expect(ampel.lampeGruen, true);
   });
 }
