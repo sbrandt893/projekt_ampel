@@ -2,22 +2,24 @@ import 'dart:developer';
 
 // Ampel-Model
 class Ampel {
-  final bool _eingeschaltet;
+// Attribute
+  final bool _eingeschaltet; // _eingeschaltet ist private und kann nur innerhalb der Klasse verwendet werden (immutable)
   final bool _lampeRot;
   final bool _lampeGelb;
   final bool _lampeGruen;
 
-// Constructor with named parameters
+// Konstruktor
   const Ampel({
-    required bool eingeschaltet,
+    required bool eingeschaltet, // eingeschaltet ist required und muss beim Aufruf des Konstruktors übergeben werden
     required bool lampeRot,
     required bool lampeGelb,
     required bool lampeGruen,
-  })  : _eingeschaltet = eingeschaltet,
+  })  : _eingeschaltet = eingeschaltet, // _eingeschaltet wird mit dem übergebenen Wert initialisiert
         _lampeRot = lampeRot,
         _lampeGelb = lampeGelb,
         _lampeGruen = lampeGruen;
 
+// Getter für die Attribute
   bool get eingeschaltet => _eingeschaltet;
   bool get lampeRot => _lampeRot;
   bool get lampeGelb => _lampeGelb;
@@ -31,7 +33,7 @@ class Ampel {
     bool? lampeGruen,
   }) {
     return Ampel(
-      eingeschaltet: eingeschaltet ?? _eingeschaltet,
+      eingeschaltet: eingeschaltet ?? _eingeschaltet, // Wenn eingeschaltet nicht übergeben wird, wird der aktuelle Wert verwendet
       lampeRot: lampeRot ?? _lampeRot,
       lampeGelb: lampeGelb ?? _lampeGelb,
       lampeGruen: lampeGruen ?? _lampeGruen,
@@ -85,8 +87,9 @@ class Ampel {
     return 'Ampel(eingeschaltet: $eingeschaltet, lampeRot: $lampeRot, lampeGelb: $lampeGelb, lampeGruen: $lampeGruen)';
   }
 
-// toJson-Methode für die Serialisierung
-  Map<String, dynamic> toJson() {
+// toJson-Methode für die Serialisierung (Speichern)
+  Map<String, dynamic> toJson() // Map<String, dynamic> ist ein assoziatives Array mit String als Schlüssel und dynamic als Wert
+  {
     return {
       'eingeschaltet': eingeschaltet,
       'lampeRot': lampeRot,
@@ -95,7 +98,7 @@ class Ampel {
     };
   }
 
-// fromJson-Methode für die Deserialisierung
+// fromJson-Methode für die Deserialisierung (Laden)
   factory Ampel.fromJson(Map<String, dynamic> json) {
     final ampel = Ampel(
       eingeschaltet: json['eingeschaltet'],

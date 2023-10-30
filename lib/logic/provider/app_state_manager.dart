@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
@@ -7,7 +8,9 @@ import 'package:projekt_ampel/logic/provider/ampel_provider.dart';
 import 'package:projekt_ampel/logic/provider/ampel_state.dart.dart';
 import 'package:projekt_ampel/main.dart';
 
+// AppStateManager ist für die Verwaltung des AppStates zuständig
 class AppStateManager extends StateNotifier<AppState> {
+  // Attribute
   final AmpelState ampel1State;
   final AmpelState ampel2State;
   final AmpelState ampel3State;
@@ -36,29 +39,31 @@ class AppStateManager extends StateNotifier<AppState> {
 
   // AppState lokal speichern
   Future<void> saveAppState() async {
-    print('saveAppState...');
-    final directory = await getApplicationDocumentsDirectory();
-    final file = File('${directory.path}/app_state.json');
+    log('saveAppState...');
+    final directory = await getApplicationDocumentsDirectory(); // Holt das Verzeichnis in dem die App gespeichert ist
+    final file = File('${directory.path}/app_state.json'); // Erstellt eine Datei im Verzeichnis
 
     try {
-      final AppState appState = state.copyWith(
-        ampel1State: globalRef?.read(ampel1StateProvider.notifier) ?? ampel1State,
+      final AppState appState = state.copyWith // Erstellt eine Kopie des aktuellen AppStates
+          (
+        ampel1State:
+            globalRef?.read(ampel1StateProvider.notifier) ?? ampel1State, // Setzt die AmpelStates auf die aktuellen Werte aus den Providern oder auf die Werte aus dem AppState
         ampel2State: globalRef?.read(ampel2StateProvider.notifier) ?? ampel2State,
         ampel3State: globalRef?.read(ampel3StateProvider.notifier) ?? ampel3State,
         ampel4State: globalRef?.read(ampel4StateProvider.notifier) ?? ampel4State,
       );
 
-      await file.writeAsString(jsonEncode(appState.toJson()));
-      print('jsonEncode(state.toJson()): ${jsonEncode(appState.toJson())}');
+      await file.writeAsString(jsonEncode(appState.toJson())); // Speichert den AppState als JSON-String in der Datei
+      log('jsonEncode(state.toJson()): ${jsonEncode(appState.toJson())}');
     } catch (e) {
-      print('Error saving AppState: $e');
+      log('Error saving AppState: $e'); // Gibt einen Fehler aus, wenn der AppState nicht gespeichert werden konnte
     }
-    print('saveAppState...done');
+    log('saveAppState...done');
   }
 
   // AppState lokal laden
   Future<void> loadAppState() async {
-    print('loadAppState...');
+    log('loadAppState...');
     final directory = await getApplicationDocumentsDirectory();
     final file = File('${directory.path}/app_state.json');
 
@@ -67,47 +72,16 @@ class AppStateManager extends StateNotifier<AppState> {
         final jsonString = await file.readAsString();
         final json = jsonDecode(jsonString);
         state = AppState.fromJson(json);
-        print('loaded AppState: $state');
+        log('loaded AppState: $state');
 
         // Update alle AmpelStates
-        globalRef?.read(ampel1StateProvider.notifier).updateAmpelState(state.ampel1State);
+        globalRef?.read(ampel1StateProvider.notifier).updateAmpelState(state.ampel1State); // Setzt die AmpelStates auf die Werte aus dem AppState
         globalRef?.read(ampel2StateProvider.notifier).updateAmpelState(state.ampel2State);
         globalRef?.read(ampel3StateProvider.notifier).updateAmpelState(state.ampel3State);
         globalRef?.read(ampel4StateProvider.notifier).updateAmpelState(state.ampel4State);
       }
     } catch (e) {
-      print('Error loading AppState: $e');
+      log('Error loading AppState: $e');
     }
   }
-
-// AmpelState lokal laden
-  // Future<void> loadAmpelState() async {
-  //   final directory = await getApplicationDocumentsDirectory();
-  //   final file = File('${directory.path}/ampel_state_$uniqueId.json');
-
-  //   try {
-  //     if (file.existsSync()) {
-  //       final jsonString = await file.readAsString();
-  //       final json = jsonDecode(jsonString);
-  //       state = Ampel.fromJson(json);
-  //     }
-  //   } catch (e) {
-  //     print('Error loading AmpelState ($uniqueId): $e');
-  //   }
-  // }
-
-  // toJson-Methode für die Serialisierung
-  // Map<String, dynamic> toJson() {
-  //   return {
-  //     'uniqueId': uniqueId,
-  //     'ampel': state.toJson(),
-  //   };
-  // }
-
-  // fromJson-Methode für die Deserialisierung
-  // factory AppStateManager.fromJson(Map<String, dynamic> json) {
-  //   return AppStateManager(
-  //     uniqueId: json['uniqueId'],
-  //   );
-  // }
 }

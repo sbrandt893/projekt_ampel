@@ -3,7 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projekt_ampel/frontend/views/widgets/ampel_widget.dart';
 import 'package:projekt_ampel/logic/provider/ampel_provider.dart';
 
-class HomeScreen extends ConsumerWidget {
+class HomeScreen extends ConsumerWidget // ConsumerWidget ist ein Widget, welches auf Provider zugreifen kann
+{
   const HomeScreen({super.key});
 
   @override
@@ -23,7 +24,8 @@ class HomeScreen extends ConsumerWidget {
         ],
       ),
       body: Center(
-        child: AspectRatio(
+        child: AspectRatio // AspectRatio ist ein Widget, welches das Seitenverhältnis eines Widgets festlegt
+            (
           aspectRatio: 1,
           child: Stack(
             children: [
@@ -31,17 +33,17 @@ class HomeScreen extends ConsumerWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 20),
                   Expanded(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        AmpelWidget(ampelStateProvider: ampel1StateProvider),
+                        AmpelWidget(ampelStateProvider: ampel1StateProvider), // AmpelWidget ist ein Widget, welches die Ampel darstellt
                         AmpelWidget(ampelStateProvider: ampel2StateProvider),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 220),
+                  const SizedBox(height: 150),
                   Expanded(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -51,7 +53,7 @@ class HomeScreen extends ConsumerWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 20),
                 ],
               ),
             ],

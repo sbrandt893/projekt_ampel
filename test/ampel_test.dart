@@ -35,7 +35,7 @@ void main() {
     expect(ampel.lampeGruen, true);
   });
 
-  test('Ampel schalten()', () {
+  test('Ampel Grün auf Gelb schalten()', () {
     Ampel ampel = const Ampel(
       eingeschaltet: true,
       lampeRot: false,

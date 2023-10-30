@@ -3,6 +3,12 @@ import 'package:projekt_ampel/logic/provider/ampel_state.dart.dart';
 
 @immutable
 class AppState {
+  // Attribute
+  final AmpelState _ampel1State;
+  final AmpelState _ampel2State;
+  final AmpelState _ampel3State;
+  final AmpelState _ampel4State;
+
   // Konstruktor
   const AppState({
     required AmpelState ampel1State,
@@ -14,13 +20,7 @@ class AppState {
         _ampel3State = ampel3State,
         _ampel4State = ampel4State;
 
-  // Attribute
-  final AmpelState _ampel1State;
-  final AmpelState _ampel2State;
-  final AmpelState _ampel3State;
-  final AmpelState _ampel4State;
-
-  // Getter
+  // Getter für die Attribute
   AmpelState get ampel1State => _ampel1State;
   AmpelState get ampel2State => _ampel2State;
   AmpelState get ampel3State => _ampel3State;
@@ -47,7 +47,7 @@ class AppState {
     return 'AppState{ampel1State: $ampel1State, ampel2State: $ampel2State, ampel3State: $ampel3State, ampel4State: $ampel4State}';
   }
 
-  // toJson-Methode für die Serialisierung
+  // toJson-Methode für die Serialisierung (Speichern)
   Map<String, dynamic> toJson() {
     return {
       'ampel1State': ampel1State.toJson(),
@@ -57,7 +57,7 @@ class AppState {
     };
   }
 
-  // fromJson-Methode für die Deserialisierung
+  // fromJson-Methode für die Deserialisierung (Laden)
   factory AppState.fromJson(Map<String, dynamic> json) {
     final appState = AppState(
       ampel1State: AmpelState.fromJson(json['ampel1State']),
