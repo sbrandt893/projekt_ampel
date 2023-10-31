@@ -16,17 +16,17 @@ final appStateManagerProvider = StateNotifierProvider<AppStateManager, AppState>
 
 // Provider für AmpelState für Ampel 1 bis 4
 final ampel1StateProvider = StateNotifierProvider<AmpelState, Ampel>((ref) {
-  return AmpelState(uniqueId: 'ampel1', ampel: const Ampel(eingeschaltet: false, lampeRot: false, lampeGelb: false, lampeGruen: false));
+  return AmpelState(uniqueId: 'ampel1', ampel: const Ampel());
 });
 
 final ampel2StateProvider = StateNotifierProvider<AmpelState, Ampel>((ref) {
-  return AmpelState(uniqueId: 'ampel2', ampel: const Ampel(eingeschaltet: false, lampeRot: false, lampeGelb: false, lampeGruen: false));
+  return AmpelState(uniqueId: 'ampel2', ampel: const Ampel());
 });
 
 final ampel3StateProvider = StateNotifierProvider<AmpelState, Ampel>((ref) {
-  return AmpelState(uniqueId: 'ampel3', ampel: const Ampel(eingeschaltet: false, lampeRot: false, lampeGelb: false, lampeGruen: false));
+  return AmpelState(uniqueId: 'ampel3', ampel: const Ampel());
 });
 
 final ampel4StateProvider = StateNotifierProvider<AmpelState, Ampel>((ref) {
-  return AmpelState(uniqueId: 'ampel4', ampel: const Ampel(eingeschaltet: false, lampeRot: false, lampeGelb: false, lampeGruen: false));
+  return AmpelState(uniqueId: 'ampel4', ampel: const Ampel());
 });

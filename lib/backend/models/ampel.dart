@@ -10,10 +10,10 @@ class Ampel {
 
 // Konstruktor
   const Ampel({
-    required bool eingeschaltet, // eingeschaltet ist required und muss beim Aufruf des Konstruktors übergeben werden
-    required bool lampeRot,
-    required bool lampeGelb,
-    required bool lampeGruen,
+    bool eingeschaltet = false, // eingeschaltet ist required und muss beim Aufruf des Konstruktors übergeben werden
+    bool lampeRot = false,
+    bool lampeGelb = false,
+    bool lampeGruen = false,
   })  : _eingeschaltet = eingeschaltet, // _eingeschaltet wird mit dem übergebenen Wert initialisiert
         _lampeRot = lampeRot,
         _lampeGelb = lampeGelb,

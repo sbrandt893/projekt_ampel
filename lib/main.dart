@@ -28,21 +28,22 @@ class MyApp extends ConsumerWidget with WidgetsBindingObserver // WidgetsBinding
     switch (state) {
       case AppLifecycleState.inactive:
         // Wenn die App inaktiv wird, wird der aktuelle AppState gespeichert
-        globalRef?.read(appStateManagerProvider.notifier).saveAppState();
         log('AppLifecycleState: inactive');
+        globalRef?.read(appStateManagerProvider.notifier).saveAppState();
+
         break;
       case AppLifecycleState.resumed:
         log('AppLifecycleState: resumed');
         break;
       case AppLifecycleState.paused:
-        // Wenn die App pausiert wird, wird der aktuelle AppState gespeichert
-        globalRef?.read(appStateManagerProvider.notifier).saveAppState();
         log('AppLifecycleState: paused');
+
         break;
       case AppLifecycleState.detached:
-        // Wenn die App in den Hintergrund wechselt, wird der aktuelle AppState gespeichert
-        globalRef?.read(appStateManagerProvider.notifier).saveAppState();
         log('AppLifecycleState: detached');
+        break;
+      case AppLifecycleState.hidden:
+        log('AppLifecycleState: hidden');
         break;
     }
   }
