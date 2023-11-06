@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projekt_ampel/backend/models/ampel.dart';
-import 'package:projekt_ampel/logic/provider/ampel_state.dart.dart';
+import 'package:projekt_ampel/backend/models/entities/basis_auto_ampel.dart';
+import 'package:projekt_ampel/backend/models/states/ampel_state.dart.dart';
 
 class AmpelWidget extends StatelessWidget {
   // Attribute
-  final StateNotifierProvider<AmpelState, Ampel> ampelStateProvider; // Der Provider für eine Ampel
+  final StateNotifierProvider<AmpelState, BasisAutoAmpel> ampelStateProvider; // Der Provider für eine Ampel
 
   // Konstruktor
   const AmpelWidget({
@@ -31,19 +31,35 @@ class AmpelWidget extends StatelessWidget {
                   Container(
                     height: 75,
                     width: 75,
-                    decoration: BoxDecoration(color: ampel.lampeRot ? Colors.red : Colors.grey, border: Border.all(), borderRadius: const BorderRadius.all(Radius.circular(100))),
+                    decoration: BoxDecoration(
+                      color: ampel.lampen['rot'] ?? false ? Colors.red : Colors.grey,
+                      border: Border.all(),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(100),
+                      ),
+                    ),
                   ),
                   Container(
                     height: 75,
                     width: 75,
-                    decoration:
-                        BoxDecoration(color: ampel.lampeGelb ? Colors.amber : Colors.grey, border: Border.all(), borderRadius: const BorderRadius.all(Radius.circular(100))),
+                    decoration: BoxDecoration(
+                      color: ampel.lampen['gelb'] ?? false ? Colors.yellow : Colors.grey,
+                      border: Border.all(),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(100),
+                      ),
+                    ),
                   ),
                   Container(
                     height: 75,
                     width: 75,
-                    decoration:
-                        BoxDecoration(color: ampel.lampeGruen ? Colors.green : Colors.grey, border: Border.all(), borderRadius: const BorderRadius.all(Radius.circular(100))),
+                    decoration: BoxDecoration(
+                      color: ampel.lampen['gruen'] ?? false ? Colors.green : Colors.grey,
+                      border: Border.all(),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(100),
+                      ),
+                    ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -65,7 +81,7 @@ class AmpelWidget extends StatelessWidget {
                         width: 50,
                         child: ElevatedButton(
                           onPressed: () {
-                            ref.read(ampelStateProvider.notifier).schalten(); // Ampel schalten
+                            // ref.read(ampelStateProvider.notifier).schalten(); // Ampel schalten
                           },
                           child: const Icon(Icons.skip_next),
                         ),

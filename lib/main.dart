@@ -29,7 +29,7 @@ class MyApp extends ConsumerWidget with WidgetsBindingObserver // WidgetsBinding
       case AppLifecycleState.inactive:
         // Wenn die App inaktiv wird, wird der aktuelle AppState gespeichert
         log('AppLifecycleState: inactive');
-        globalRef?.read(appStateManagerProvider.notifier).saveAppState();
+        // globalRef?.read(appStateManagerProvider.notifier).saveAppState();
 
         break;
       case AppLifecycleState.resumed:
@@ -56,7 +56,7 @@ class MyApp extends ConsumerWidget with WidgetsBindingObserver // WidgetsBinding
     WidgetsBinding.instance.addObserver(this); // Fügt den Observer hinzu um den App-Lifecycle zu überwachen
 
     globalRef = ref; // Speichert die globale Referenz auf den WidgetRef um von überall auf die Provider zugreifen zu können
-    globalRef?.read(appStateManagerProvider.notifier).loadAppState(); // Lädt den AppState aus dem Speicher
+    // globalRef?.read(appStateManagerProvider.notifier).loadAppState(); // Lädt den AppState aus dem Speicher
 
     return MaterialApp(
       title: 'Ampel-Schaltung',

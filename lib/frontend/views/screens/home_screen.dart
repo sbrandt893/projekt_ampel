@@ -15,11 +15,14 @@ class HomeScreen extends ConsumerWidget // ConsumerWidget ist ein Widget, welche
         actions: [
           IconButton(
             icon: const Icon(Icons.save),
-            onPressed: () => ref.read(appStateManagerProvider.notifier).saveAppState(),
+            onPressed: () {},
+            // onPressed: () => ref.read(appStateManagerProvider.notifier).saveAppState(),
           ),
           IconButton(
             icon: const Icon(Icons.refresh),
-            onPressed: () => ref.read(appStateManagerProvider.notifier).loadAppState(),
+            onPressed: () {},
+
+            // onPressed: () => ref.read(appStateManagerProvider.notifier).loadAppState(),
           ),
         ],
       ),
@@ -38,8 +41,8 @@ class HomeScreen extends ConsumerWidget // ConsumerWidget ist ein Widget, welche
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        AmpelWidget(ampelStateProvider: ampel1StateProvider), // AmpelWidget ist ein Widget, welches die Ampel darstellt
-                        AmpelWidget(ampelStateProvider: ampel2StateProvider),
+                        // AmpelWidget(ampelStateProvider: ampel1StateProvider), // AmpelWidget ist ein Widget, welches die Ampel darstellt
+                        // AmpelWidget(ampelStateProvider: ampel2StateProvider),
                       ],
                     ),
                   ),
@@ -48,8 +51,8 @@ class HomeScreen extends ConsumerWidget // ConsumerWidget ist ein Widget, welche
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        AmpelWidget(ampelStateProvider: ampel3StateProvider),
-                        AmpelWidget(ampelStateProvider: ampel4StateProvider),
+                        // AmpelWidget(ampelStateProvider: ampel3StateProvider),
+                        // AmpelWidget(ampelStateProvider: ampel4StateProvider),
                       ],
                     ),
                   ),

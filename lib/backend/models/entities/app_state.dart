@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projekt_ampel/logic/provider/ampel_state.dart.dart';
+import 'package:projekt_ampel/backend/models/states/ampel_state.dart.dart';
 
 @immutable
 class AppState {
@@ -46,6 +46,17 @@ class AppState {
   String toString() {
     return 'AppState{ampel1State: $ampel1State, ampel2State: $ampel2State, ampel3State: $ampel3State, ampel4State: $ampel4State}';
   }
+
+  // equals-Methode für die Überprüfung, ob zwei AppState-Objekte gleich sind
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is AppState &&
+          runtimeType == other.runtimeType &&
+          _ampel1State == other._ampel1State &&
+          _ampel2State == other._ampel2State &&
+          _ampel3State == other._ampel3State &&
+          _ampel4State == other._ampel4State;
 
   // toJson-Methode für die Serialisierung (Speichern)
   Map<String, dynamic> toJson() {
