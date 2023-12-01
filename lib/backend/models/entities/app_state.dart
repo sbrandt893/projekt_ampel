@@ -4,27 +4,18 @@ import 'package:projekt_ampel/backend/models/states/ampel_state.dart.dart';
 @immutable
 class AppState {
   // Attribute
-  final AmpelState _ampel1State;
-  final AmpelState _ampel2State;
-  final AmpelState _ampel3State;
-  final AmpelState _ampel4State;
+  final AmpelState ampel1State;
+  final AmpelState ampel2State;
+  final AmpelState ampel3State;
+  final AmpelState ampel4State;
 
   // Konstruktor
   const AppState({
-    required AmpelState ampel1State,
-    required AmpelState ampel2State,
-    required AmpelState ampel3State,
-    required AmpelState ampel4State,
-  })  : _ampel1State = ampel1State,
-        _ampel2State = ampel2State,
-        _ampel3State = ampel3State,
-        _ampel4State = ampel4State;
-
-  // Getter für die Attribute
-  AmpelState get ampel1State => _ampel1State;
-  AmpelState get ampel2State => _ampel2State;
-  AmpelState get ampel3State => _ampel3State;
-  AmpelState get ampel4State => _ampel4State;
+    required this.ampel1State,
+    required this.ampel2State,
+    required this.ampel3State,
+    required this.ampel4State,
+  });
 
   // copyWith-Methode die eine neue AppState mit den übergebenen Werten zurückgibt (immutable)
   AppState copyWith({
@@ -53,10 +44,10 @@ class AppState {
       identical(this, other) ||
       other is AppState &&
           runtimeType == other.runtimeType &&
-          _ampel1State == other._ampel1State &&
-          _ampel2State == other._ampel2State &&
-          _ampel3State == other._ampel3State &&
-          _ampel4State == other._ampel4State;
+          ampel1State == other.ampel1State &&
+          ampel2State == other.ampel2State &&
+          ampel3State == other.ampel3State &&
+          ampel4State == other.ampel4State;
 
   // toJson-Methode für die Serialisierung (Speichern)
   Map<String, dynamic> toJson() {
